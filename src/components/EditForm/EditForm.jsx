@@ -46,7 +46,7 @@ class EditForm extends Component {
     // TODO: implement empty check
     if (title && author && year) {
       if (isEdit) {
-        this.props.saveBook(editId, { ...this.state });
+        this.props.saveBook(editId, { id: editId, ...this.state });
       } else {
         this.props.addBook({ ...this.state });
       }
