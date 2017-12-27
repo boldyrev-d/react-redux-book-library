@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { deleteBook } from '../../AC/books';
 
 const BooksList = (props) => {
   const { books } = props;
@@ -12,6 +13,7 @@ const BooksList = (props) => {
           <div>Year: {book.year}</div>
           <div>author: {book.author}</div>
           <div>pages: {book.pages}</div>
+          <button onClick={() => props.deleteBook(book.id)}>DELETE</button>
         </li>
       ))}
     </ul>
@@ -20,10 +22,18 @@ const BooksList = (props) => {
   return <div>{booksList}</div>;
 };
 
-export default connect((state) => {
-  const books = Object.values(state.books.entities);
+export default connect(
+  (state) => {
+    const { books } = state;
 
-  return {
-    books,
-  };
-})(BooksList);
+    const booksArray = books
+      .get('entities')
+      .valueSeq()
+      .toArray();
+
+    return {
+      books: booksArray,
+    };
+  },
+  { deleteBook },
+)(BooksList);

@@ -16,6 +16,8 @@ export function addBook(book) {
 }
 
 export function editBook(id) {
+  console.log('editid', id);
+
   return {
     type: 'EDIT_BOOK',
     payload: {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addBook } from '../../AC/books';
 
 class EditForm extends Component {
   state = {
@@ -30,6 +31,7 @@ class EditForm extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();
+    this.props.addBook({ ...this.state });
   };
 
   render() {
@@ -78,19 +80,22 @@ class EditForm extends Component {
   }
 }
 
-export default connect((state) => {
-  const { isEdit } = state.books;
-  let bookData;
+export default connect(
+  (state) => {
+    const { isEdit, editId } = state.books;
+    let bookData;
 
-  if (isEdit) {
-    bookData = state.books.entities[state.books.editId];
-    console.log('asdasdasd', bookData);
-  }
+    if (isEdit) {
+      bookData = state.books.getIn(['entities', editId]);
+    }
 
-  console.log('bookData from connect', bookData);
+    window.editId = 'PUmOomhoOm4SQvz2EYIU9';
+    window.state = state;
 
-  return {
-    isEdit,
-    bookData,
-  };
-})(EditForm);
+    return {
+      isEdit,
+      bookData,
+    };
+  },
+  { addBook },
+)(EditForm);
