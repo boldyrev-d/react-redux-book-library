@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 import { Map } from 'immutable';
 
 export function arrayToMap(arr, mapper = f => f) {
