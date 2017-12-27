@@ -36,10 +36,12 @@ export default connect(
   (state) => {
     const { books, filters } = state;
     const selected = filters.get('selected');
+    const sortBy = filters.get('sortBy');
 
     const booksArray = books
       .get('entities')
       .valueSeq()
+      .sortBy(book => book[sortBy].toLowerCase())
       .toArray();
     // eslint-disable-next-line max-len
     const filteredBooks = booksArray.filter(book => (selected.length ? selected.includes(book.id) : true));

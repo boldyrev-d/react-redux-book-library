@@ -14,7 +14,7 @@ const BookModel = Record({
 const defaultState = new Map({
   entities: arrayToMap(booksMock, book => new BookModel(book)),
   isEdit: false,
-  editId: null,
+  editId: '',
 });
 
 export default (books = defaultState, action) => {
