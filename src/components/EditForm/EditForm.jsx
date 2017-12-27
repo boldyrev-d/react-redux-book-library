@@ -17,10 +17,6 @@ class EditForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('recieve props');
-    console.log('isEdit', nextProps.isEdit);
-    console.log('data', nextProps.bookData);
-
     if (nextProps.isEdit) {
       const {
         title, author, year, pages,
