@@ -34,15 +34,18 @@ const BooksList = (props) => {
 
 export default connect(
   (state) => {
-    const { books } = state;
+    const { books, filters } = state;
+    const selected = filters.get('selected');
 
     const booksArray = books
       .get('entities')
       .valueSeq()
       .toArray();
+    // eslint-disable-next-line max-len
+    const filteredBooks = booksArray.filter(book => (selected.length ? selected.includes(book.id) : true));
 
     return {
-      books: booksArray,
+      books: filteredBooks,
     };
   },
   { deleteBook, editBook },
