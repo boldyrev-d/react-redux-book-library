@@ -1,7 +1,7 @@
 import { Record, Map } from 'immutable';
 import { books as booksMock } from '../mock';
 import { arrayToMap } from '../store/helpers';
-import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK } from '../constants';
+import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK, CLEAR_EDIT } from '../constants';
 
 const BookModel = Record({
   id: null,
@@ -22,25 +22,22 @@ export default (books = defaultState, action) => {
 
   switch (type) {
     case DELETE_BOOK:
-      return books
-        .deleteIn(['entities', payload.id])
-        .set('isEdit', false)
-        .set('editId', null);
+      return books.deleteIn(['entities', payload.id]);
 
     case ADD_BOOK:
-      return books
-        .setIn(['entities', generatedId], new BookModel({ ...payload.book, id: generatedId }))
-        .set('isEdit', false)
-        .set('editId', null);
+      return books.setIn(
+        ['entities', generatedId],
+        new BookModel({ ...payload.book, id: generatedId }),
+      );
 
     case EDIT_BOOK:
       return books.set('isEdit', true).set('editId', payload.id);
 
     case SAVE_BOOK:
-      return books
-        .updateIn(['entities', payload.id], () => new BookModel(payload.book))
-        .set('isEdit', false)
-        .set('editId', null);
+      return books.updateIn(['entities', payload.id], () => new BookModel(payload.book));
+
+    case CLEAR_EDIT:
+      return books.set('isEdit', false).set('editId', null);
 
     default:
       return books;

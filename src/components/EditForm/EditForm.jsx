@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBook, saveBook } from '../../AC/books';
+import { addBook, saveBook, clearEdit } from '../../AC/books';
 
 class EditForm extends Component {
   constructor(props) {
@@ -54,6 +54,11 @@ class EditForm extends Component {
     }
   };
 
+  handleClear = () => {
+    this.setState({ ...this.baseState });
+    this.props.clearEdit();
+  };
+
   render() {
     return (
       <div>
@@ -91,7 +96,10 @@ class EditForm extends Component {
               onChange={this.handleChange('pages')}
             />
           </div>
-          <button>Save</button>
+          <button type="submit">{this.props.isEdit ? 'Save' : 'Add'}</button>
+          <button type="reset" onClick={this.handleClear}>
+            Clear
+          </button>
         </form>
       </div>
     );
@@ -115,5 +123,5 @@ export default connect(
       bookData,
     };
   },
-  { addBook, saveBook },
+  { addBook, saveBook, clearEdit },
 )(EditForm);

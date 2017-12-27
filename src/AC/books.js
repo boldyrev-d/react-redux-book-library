@@ -1,19 +1,33 @@
-import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK } from '../constants';
+import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK, CLEAR_EDIT } from '../constants';
+
+export function clearEdit() {
+  return {
+    type: CLEAR_EDIT,
+  };
+}
 
 export function deleteBook(id) {
-  return {
-    type: DELETE_BOOK,
-    payload: { id },
+  return (dispatch) => {
+    dispatch({
+      type: DELETE_BOOK,
+      payload: { id },
+    });
+
+    dispatch(clearEdit());
   };
 }
 
 export function addBook(book) {
-  return {
-    type: ADD_BOOK,
-    payload: {
-      book,
-    },
-    generateId: true,
+  return (dispatch) => {
+    dispatch({
+      type: ADD_BOOK,
+      payload: {
+        book,
+      },
+      generateId: true,
+    });
+
+    dispatch(clearEdit());
   };
 }
 
@@ -27,11 +41,15 @@ export function editBook(id) {
 }
 
 export function saveBook(id, book) {
-  return {
-    type: SAVE_BOOK,
-    payload: {
-      id,
-      book,
-    },
+  return (dispatch) => {
+    dispatch({
+      type: SAVE_BOOK,
+      payload: {
+        id,
+        book,
+      },
+    });
+
+    dispatch(clearEdit());
   };
 }
