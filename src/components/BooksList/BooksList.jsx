@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteBook } from '../../AC/books';
+import { deleteBook, editBook } from '../../AC/books';
 
 const BooksList = (props) => {
   const { books } = props;
@@ -13,7 +13,17 @@ const BooksList = (props) => {
           <div>Year: {book.year}</div>
           <div>author: {book.author}</div>
           <div>pages: {book.pages}</div>
-          <button onClick={() => props.deleteBook(book.id)}>DELETE</button>
+          <button
+            onClick={() => {
+              // eslint-disable-next-line no-restricted-globals, no-alert
+              if (confirm('Вы уверены?')) {
+                props.deleteBook(book.id);
+              }
+            }}
+          >
+            DELETE
+          </button>
+          <button onClick={() => props.editBook(book.id)}>EDIT</button>
         </li>
       ))}
     </ul>
@@ -35,5 +45,5 @@ export default connect(
       books: booksArray,
     };
   },
-  { deleteBook },
+  { deleteBook, editBook },
 )(BooksList);

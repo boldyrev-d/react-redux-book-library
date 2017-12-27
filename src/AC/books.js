@@ -1,13 +1,15 @@
+import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK } from '../constants';
+
 export function deleteBook(id) {
   return {
-    type: 'DELETE_BOOK',
+    type: DELETE_BOOK,
     payload: { id },
   };
 }
 
 export function addBook(book) {
   return {
-    type: 'ADD_BOOK',
+    type: ADD_BOOK,
     payload: {
       book,
     },
@@ -16,10 +18,8 @@ export function addBook(book) {
 }
 
 export function editBook(id) {
-  console.log('editid', id);
-
   return {
-    type: 'EDIT_BOOK',
+    type: EDIT_BOOK,
     payload: {
       id,
     },
@@ -28,7 +28,7 @@ export function editBook(id) {
 
 export function saveBook(id, book) {
   return {
-    type: 'SAVE_BOOK',
+    type: SAVE_BOOK,
     payload: {
       id,
       book,

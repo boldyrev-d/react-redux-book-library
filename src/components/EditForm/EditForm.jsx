@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBook } from '../../AC/books';
+import { addBook, saveBook } from '../../AC/books';
 
 class EditForm extends Component {
-  state = {
-    title: '',
-    author: '',
-    year: '',
-    pages: '1',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: '',
+      author: '',
+      year: '',
+      pages: '1',
+    };
+
+    this.baseState = this.state;
+  }
 
   componentWillReceiveProps(nextProps) {
     console.log('recieve props');
@@ -16,9 +22,15 @@ class EditForm extends Component {
     console.log('data', nextProps.bookData);
 
     if (nextProps.isEdit) {
+      const {
+        title, author, year, pages,
+      } = nextProps.bookData;
+
       this.setState({
-        ...this.state,
-        ...nextProps.bookData,
+        title,
+        author,
+        year,
+        pages,
       });
     }
   }
@@ -31,12 +43,22 @@ class EditForm extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();
-    this.props.addBook({ ...this.state });
+
+    const { title, author, year } = this.state;
+    const { isEdit, editId } = this.props;
+
+    // TODO: implement empty check
+    if (title && author && year) {
+      if (isEdit) {
+        this.props.saveBook(editId, { ...this.state });
+      } else {
+        this.props.addBook({ ...this.state });
+      }
+      this.setState({ ...this.baseState });
+    }
   };
 
   render() {
-    // console.log(this.state);
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -82,20 +104,20 @@ class EditForm extends Component {
 
 export default connect(
   (state) => {
-    const { isEdit, editId } = state.books;
+    const { books } = state;
+    const isEdit = books.get('isEdit');
+    const editId = books.get('editId');
+
     let bookData;
-
     if (isEdit) {
-      bookData = state.books.getIn(['entities', editId]);
+      bookData = books.getIn(['entities', editId]);
     }
-
-    window.editId = 'PUmOomhoOm4SQvz2EYIU9';
-    window.state = state;
 
     return {
       isEdit,
+      editId,
       bookData,
     };
   },
-  { addBook },
+  { addBook, saveBook },
 )(EditForm);
