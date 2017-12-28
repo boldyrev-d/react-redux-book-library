@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { media } from '../../styleUtils';
 
 import { deleteBook, editBook } from '../../AC/books';
 
@@ -39,6 +40,10 @@ const Wrapper = styled.div`
     bottom: 0;
     transform: translate(-50%, 0);
   }
+
+  ${media.tablet`
+    width: 100%;
+  `};
 `;
 
 const Title = styled.h3`

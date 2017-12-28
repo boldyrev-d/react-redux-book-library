@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import BasicButton from '../Button';
+import { media } from '../../styleUtils';
 
 import { addBook, saveBook, clearEdit } from '../../AC/books';
 
 const Root = styled.div`
   padding: 15px;
+
+  ${media.phablet`
+    width: 100%;
+  `};
 `;
 
 const Title = styled.h2`
@@ -24,6 +29,14 @@ const Form = styled.form`
 
 const Input = styled.input`
   display: block;
+  padding: 3px 5px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #e2e2e2;
+
+  ${media.phablet`
+    width: 100%;
+  `};
 `;
 
 const Label = styled.label`
