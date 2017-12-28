@@ -3,6 +3,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 import { changeSelection } from '../../AC/filters';
 
 const Wrapper = styled.div`
@@ -13,8 +14,6 @@ const Title = styled.h2`
   margin: 0 0 20px;
   font-size: 20px;
 `;
-
-const StyledSelect = styled(Select)``;
 
 const SelectFilter = (props) => {
   const { books, selected } = props;
@@ -28,8 +27,14 @@ const SelectFilter = (props) => {
 
   return (
     <Wrapper>
-      <Title>Search book</Title>
-      <StyledSelect options={options} value={selected} multi onChange={handleChange} />
+      <Title>Search books</Title>
+      <Select
+        options={options}
+        value={selected}
+        placeholder="Type book name..."
+        multi
+        onChange={handleChange}
+      />
     </Wrapper>
   );
 };

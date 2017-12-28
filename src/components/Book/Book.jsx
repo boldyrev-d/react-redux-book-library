@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 import { deleteBook, editBook } from '../../AC/books';
+
 import cross from './cross.svg';
 import pen from './pen.svg';
 
@@ -44,8 +46,6 @@ const Title = styled.h3`
   font-size: 18px;
 `;
 
-const Infos = styled.div``;
-
 const Info = styled.div`
   margin-bottom: 10px;
 `;
@@ -86,14 +86,13 @@ const ButtonIcon = styled.div`
 const Book = props => (
   <Wrapper>
     <Title>{props.book.title}</Title>
-    <Infos>
+    <div>
       <Info>Year: {props.book.year}</Info>
       <Info>Author: {props.book.author}</Info>
       <Info>Pages: {props.book.pages}</Info>
-    </Infos>
+    </div>
     <Buttons>
       <Button title="Edit book" onClick={() => props.editBook(props.book.id)}>
-        {/* EDIT */}
         <ButtonIcon src={pen} />
       </Button>
       <Button
@@ -106,7 +105,6 @@ const Book = props => (
         }}
       >
         <ButtonIcon src={cross} />
-        {/* DELETE */}
       </Button>
     </Buttons>
   </Wrapper>

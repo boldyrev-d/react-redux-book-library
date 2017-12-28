@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import BasicButton from '../Button';
+
 import { changeSort } from '../../AC/filters';
 
 const Wrapper = styled.div`

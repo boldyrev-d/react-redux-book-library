@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import BasicButton from '../Button';
+
 import { addBook, saveBook, clearEdit } from '../../AC/books';
 
 const Root = styled.div`
@@ -125,7 +126,6 @@ class EditForm extends Component {
               onChange={this.handleChange('pages')}
             />
           </Label>
-
           <Buttons>
             <Button type="submit" title={this.props.isEdit ? 'Save book' : 'Add book'}>
               {this.props.isEdit ? 'Save' : 'Add'}
