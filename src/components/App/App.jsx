@@ -9,7 +9,7 @@ import { media } from '../../styleUtils';
 const Root = styled.main`
   display: flex;
 
-  ${media.phablet`
+  ${media.tablet`
     flex-direction: column;
   `};
 `;

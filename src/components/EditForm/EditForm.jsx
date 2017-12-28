@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import BasicButton from '../Button';
-import { media } from '../../styleUtils';
 
 import { addBook, saveBook, clearEdit } from '../../AC/books';
 
 const Root = styled.div`
   padding: 15px;
   box-sizing: border-box;
-
-  ${media.phablet`
-    width: 100%;
-  `};
 `;
 
 const Title = styled.h2`
