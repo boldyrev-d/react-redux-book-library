@@ -64,7 +64,7 @@ class EditForm extends Component {
       title: '',
       author: '',
       year: '',
-      pages: '1',
+      pages: 1,
     };
 
     this.baseState = this.state;
@@ -73,13 +73,14 @@ class EditForm extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isEdit) {
       const {
-        title, author, year, pages,
+        title, author, pages, year,
       } = nextProps.bookData;
+      const formattedYear = `${year}-01-01`;
 
       this.setState({
         title,
         author,
-        year,
+        year: formattedYear,
         pages,
       });
     }
