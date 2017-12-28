@@ -22,7 +22,8 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 0 10px 10px 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
   padding: 10px;
   width: 200px;
   height: 165px;
@@ -43,6 +44,7 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     width: 100%;
+    margin-right: 0;
   `};
 `;
 
