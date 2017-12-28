@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import { CHANGE_SELECTION, CHANGE_SORT } from '../constants';
 
 export function changeSelection(selected) {
