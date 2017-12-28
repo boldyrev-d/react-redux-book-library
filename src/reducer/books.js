@@ -6,9 +6,9 @@ import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK, CLEAR_EDIT } from '../cons
 const BookModel = Record({
   id: null,
   title: '',
-  year: '',
+  year: null,
   author: '',
-  pages: '',
+  pages: 1,
 });
 
 const defaultState = new Map({

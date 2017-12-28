@@ -32,8 +32,7 @@ export default connect((state) => {
   const booksArray = books
     .get('entities')
     .valueSeq()
-    // TODO: fox number and string sort
-    .sortBy(book => book[sortBy].toLowerCase())
+    .sortBy(book => (typeof book[sortBy] === 'string' ? book[sortBy].toLowerCase() : book[sortBy]))
     .toArray();
   // eslint-disable-next-line max-len
   const filteredBooks = booksArray.filter(book => (selected.length ? selected.includes(book.id) : true));
