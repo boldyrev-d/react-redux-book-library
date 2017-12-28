@@ -1,6 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import BasicButton from '../Button';
 import { addBook, saveBook, clearEdit } from '../../AC/books';
+
+const Root = styled.div`
+  padding: 15px;
+`;
+
+const Title = styled.h2`
+  margin: 0 0 20px;
+  font-size: 20px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 15px;
+  border: 1px solid #e2e2e2;
+`;
+
+const Input = styled.input`
+  display: block;
+`;
+
+const Label = styled.label`
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled(BasicButton)`
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+`;
 
 class EditForm extends Component {
   constructor(props) {
@@ -61,47 +101,45 @@ class EditForm extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type="text"
-              placeholder="Title"
-              value={this.state.title}
-              onChange={this.handleChange('title')}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Author"
-              value={this.state.author}
-              onChange={this.handleChange('author')}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              placeholder="Year"
-              value={this.state.year}
-              onChange={this.handleChange('year')}
-            />
-          </div>
-          <div>
-            <input
+      <Root>
+        <Form onSubmit={this.handleSubmit}>
+          <Title>{this.props.isEdit ? 'Edit book' : 'Add book'}</Title>
+          <Label>
+            Title
+            <Input type="text" value={this.state.title} onChange={this.handleChange('title')} />
+          </Label>
+          <Label>
+            Author
+            <Input type="text" value={this.state.author} onChange={this.handleChange('author')} />
+          </Label>
+          <Label>
+            Year
+            <Input type="text" value={this.state.year} onChange={this.handleChange('year')} />
+          </Label>
+          <Label>
+            Pages
+            <Input
               type="number"
-              placeholder="Pages"
               min="1"
               value={this.state.pages}
               onChange={this.handleChange('pages')}
             />
-          </div>
-          <button type="submit">{this.props.isEdit ? 'Save' : 'Add'}</button>
-          <button type="reset" onClick={this.handleClear}>
-            Clear
-          </button>
-        </form>
-      </div>
+          </Label>
+
+          <Buttons>
+            <Button type="submit" title={this.props.isEdit ? 'Save book' : 'Add book'}>
+              {this.props.isEdit ? 'Save' : 'Add'}
+            </Button>
+            <Button
+              type="reset"
+              title={this.props.isEdit ? 'Cancel' : 'Clear form'}
+              onClick={this.handleClear}
+            >
+              {this.props.isEdit ? 'Cancel' : 'Clear'}
+            </Button>
+          </Buttons>
+        </Form>
+      </Root>
     );
   }
 }

@@ -1,54 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteBook, editBook } from '../../AC/books';
+import styled from 'styled-components';
+import Book from '../Book';
+
+const List = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const BooksList = (props) => {
   const { books } = props;
 
-  const booksList = (
-    <ul>
-      {books.map(book => (
-        <li key={book.id}>
-          <h2>{book.title}</h2>
-          <div>Year: {book.year}</div>
-          <div>author: {book.author}</div>
-          <div>pages: {book.pages}</div>
-          <button
-            onClick={() => {
-              // eslint-disable-next-line no-restricted-globals, no-alert
-              if (confirm('Вы уверены?')) {
-                props.deleteBook(book.id);
-              }
-            }}
-          >
-            DELETE
-          </button>
-          <button onClick={() => props.editBook(book.id)}>EDIT</button>
-        </li>
-      ))}
-    </ul>
-  );
+  const booksList = books.map(book => <Book key={book.id} book={book} />);
 
-  return <div>{booksList}</div>;
+  return <List>{booksList}</List>;
 };
 
-export default connect(
-  (state) => {
-    const { books, filters } = state;
-    const selected = filters.get('selected');
-    const sortBy = filters.get('sortBy');
+export default connect((state) => {
+  const { books, filters } = state;
+  const selected = filters.get('selected');
+  const sortBy = filters.get('sortBy');
 
-    const booksArray = books
-      .get('entities')
-      .valueSeq()
-      .sortBy(book => book[sortBy].toLowerCase())
-      .toArray();
-    // eslint-disable-next-line max-len
-    const filteredBooks = booksArray.filter(book => (selected.length ? selected.includes(book.id) : true));
+  const booksArray = books
+    .get('entities')
+    .valueSeq()
+    // TODO: fox number and string sort
+    .sortBy(book => book[sortBy].toLowerCase())
+    .toArray();
+  // eslint-disable-next-line max-len
+  const filteredBooks = booksArray.filter(book => (selected.length ? selected.includes(book.id) : true));
 
-    return {
-      books: filteredBooks,
-    };
-  },
-  { deleteBook, editBook },
-)(BooksList);
+  return {
+    books: filteredBooks,
+  };
+})(BooksList);
