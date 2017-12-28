@@ -113,56 +113,41 @@ class EditForm extends Component {
   };
 
   render() {
+    const {
+      title, author, year, pages,
+    } = this.state;
+    const { isEdit } = this.props;
+
     return (
       <Root>
         <Form onSubmit={this.handleSubmit}>
-          <Title>{this.props.isEdit ? 'Edit book' : 'Add book'}</Title>
+          <Title>{isEdit ? 'Edit book' : 'Add book'}</Title>
           <Label>
             Title
-            <Input
-              type="text"
-              required
-              value={this.state.title}
-              onChange={this.handleChange('title')}
-            />
+            <Input type="text" required value={title} onChange={this.handleChange('title')} />
           </Label>
           <Label>
             Author
-            <Input
-              type="text"
-              required
-              value={this.state.author}
-              onChange={this.handleChange('author')}
-            />
+            <Input type="text" required value={author} onChange={this.handleChange('author')} />
           </Label>
           <Label>
             Year
-            <Input
-              type="date"
-              required
-              value={this.state.year}
-              onChange={this.handleChange('year')}
-            />
+            <Input type="date" required value={year} onChange={this.handleChange('year')} />
           </Label>
           <Label>
             Pages
-            <Input
-              type="number"
-              min="1"
-              value={this.state.pages}
-              onChange={this.handleChange('pages')}
-            />
+            <Input type="number" min="1" value={pages} onChange={this.handleChange('pages')} />
           </Label>
           <Buttons>
-            <Button type="submit" title={this.props.isEdit ? 'Save book' : 'Add book'}>
-              {this.props.isEdit ? 'Save' : 'Add'}
+            <Button type="submit" title={isEdit ? 'Save book' : 'Add book'}>
+              {isEdit ? 'Save' : 'Add'}
             </Button>
             <Button
               type="reset"
-              title={this.props.isEdit ? 'Cancel' : 'Clear form'}
+              title={isEdit ? 'Cancel' : 'Clear form'}
               onClick={this.handleClear}
             >
-              {this.props.isEdit ? 'Cancel' : 'Clear'}
+              {isEdit ? 'Cancel' : 'Clear'}
             </Button>
           </Buttons>
         </Form>
