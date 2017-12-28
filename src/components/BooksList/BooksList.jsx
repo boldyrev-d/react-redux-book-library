@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import FlipMove from 'react-flip-move';
 import Book from '../Book';
 
 const List = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -13,7 +15,13 @@ const BooksList = (props) => {
 
   const booksList = books.map(book => <Book key={book.id} book={book} />);
 
-  return <List>{booksList}</List>;
+  return (
+    <List>
+      <FlipMove duration="300" typeName={null}>
+        {booksList}
+      </FlipMove>
+    </List>
+  );
 };
 
 export default connect((state) => {
