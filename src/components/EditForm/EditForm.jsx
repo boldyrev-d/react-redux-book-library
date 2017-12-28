@@ -8,6 +8,7 @@ import { addBook, saveBook, clearEdit } from '../../AC/books';
 
 const Root = styled.div`
   padding: 15px;
+  box-sizing: border-box;
 
   ${media.phablet`
     width: 100%;
@@ -23,20 +24,19 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 300px;
   padding: 15px;
   border: 1px solid #e2e2e2;
+  box-sizing: border-box;
 `;
 
 const Input = styled.input`
   display: block;
+  width: 100%;
   padding: 3px 5px;
   margin-top: 5px;
   box-sizing: border-box;
   border: 1px solid #e2e2e2;
-
-  ${media.phablet`
-    width: 100%;
-  `};
 `;
 
 const Label = styled.label`
@@ -94,18 +94,16 @@ class EditForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
 
-    const { title, author, year } = this.state;
+    const year = this.state.year.split('-')[0];
     const { isEdit, editId } = this.props;
 
-    // TODO: implement empty check
-    if (title && author && year) {
-      if (isEdit) {
-        this.props.saveBook(editId, { id: editId, ...this.state });
-      } else {
-        this.props.addBook({ ...this.state });
-      }
-      this.setState({ ...this.baseState });
+    if (isEdit) {
+      this.props.saveBook(editId, { id: editId, ...this.state, year });
+    } else {
+      this.props.addBook({ ...this.state, year });
     }
+
+    this.setState({ ...this.baseState });
   };
 
   handleClear = () => {
@@ -120,15 +118,30 @@ class EditForm extends Component {
           <Title>{this.props.isEdit ? 'Edit book' : 'Add book'}</Title>
           <Label>
             Title
-            <Input type="text" value={this.state.title} onChange={this.handleChange('title')} />
+            <Input
+              type="text"
+              required
+              value={this.state.title}
+              onChange={this.handleChange('title')}
+            />
           </Label>
           <Label>
             Author
-            <Input type="text" value={this.state.author} onChange={this.handleChange('author')} />
+            <Input
+              type="text"
+              required
+              value={this.state.author}
+              onChange={this.handleChange('author')}
+            />
           </Label>
           <Label>
             Year
-            <Input type="text" value={this.state.year} onChange={this.handleChange('year')} />
+            <Input
+              type="date"
+              required
+              value={this.state.year}
+              onChange={this.handleChange('year')}
+            />
           </Label>
           <Label>
             Pages
