@@ -10,4 +10,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## DEMO
 
-🔥 [Live demo on surge.sh → react-redux-book-library.surge.sh](http://react-redux-book-library.surge.sh/) 🔥
+🔥 [Live demo on now.sh → react-redux-book-library.now.sh](https://react-redux-book-library.now.sh/) 🔥
