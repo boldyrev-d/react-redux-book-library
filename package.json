@@ -7,10 +7,10 @@
     "moment": "^2.22.2",
     "nanoid": "^1.0.3",
     "normalize.css": "^8.0.0",
-    "react": "^16.4.0",
+    "react": "^16.4.1",
     "react-app-rewire-styled-components": "^3.0.2",
     "react-app-rewired": "^1.5.2",
-    "react-dom": "^16.4.0",
+    "react-dom": "^16.4.1",
     "react-flip-move": "^3.0.2",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
@@ -35,7 +35,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
     "husky": "^0.14.3",
-    "now": "^11.2.2"
+    "now": "^11.2.4"
   },
   "now": {
     "alias": "react-redux-book-library"
