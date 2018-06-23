@@ -29,12 +29,22 @@ const Button = styled(BasicButton)`
 
 const SortToolbar = props => (
   <Wrapper>
-    <Title>Sort books</Title>
+    <Title>
+Sort books
+    </Title>
     <Buttons>
-      <Button onClick={() => props.changeSort('title')}>Sort by title</Button>
-      <Button onClick={() => props.changeSort('author')}>Sort by author</Button>
-      <Button onClick={() => props.changeSort('year')}>Sort by year</Button>
-      <Button onClick={() => props.changeSort('pages')}>Sort by pages</Button>
+      <Button onClick={() => props.changeSort('title')}>
+Sort by title
+      </Button>
+      <Button onClick={() => props.changeSort('author')}>
+Sort by author
+      </Button>
+      <Button onClick={() => props.changeSort('year')}>
+Sort by year
+      </Button>
+      <Button onClick={() => props.changeSort('pages')}>
+Sort by pages
+      </Button>
     </Buttons>
   </Wrapper>
 );

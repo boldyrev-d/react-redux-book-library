@@ -22,12 +22,13 @@ const SelectFilter = (props) => {
     value: book.id,
   }));
 
-  const handleChange = selectedItems =>
-    props.changeSelection(selectedItems.map(option => option.value));
+  const handleChange = selectedItems => props.changeSelection(selectedItems.map(option => option.value));
 
   return (
     <Wrapper>
-      <Title>Search books</Title>
+      <Title>
+Search books
+      </Title>
       <Select
         options={options}
         value={selected}

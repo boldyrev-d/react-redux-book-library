@@ -116,7 +116,9 @@ class EditForm extends Component {
     return (
       <Root>
         <Form onSubmit={this.handleSubmit}>
-          <Title>{isEdit ? 'Edit book' : 'Add book'}</Title>
+          <Title>
+            {isEdit ? 'Edit book' : 'Add book'}
+          </Title>
           <Label>
             Title
             <Input type="text" required value={title} onChange={this.handleChange('title')} />

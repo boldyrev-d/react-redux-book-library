@@ -92,11 +92,22 @@ const ButtonIcon = styled.div`
 
 const Book = props => (
   <Wrapper>
-    <Title>{props.book.title}</Title>
+    <Title>
+      {props.book.title}
+    </Title>
     <div>
-      <Info>Year: {props.book.year}</Info>
-      <Info>Author: {props.book.author}</Info>
-      <Info>Pages: {props.book.pages}</Info>
+      <Info>
+Year:
+        {props.book.year}
+      </Info>
+      <Info>
+Author:
+        {props.book.author}
+      </Info>
+      <Info>
+Pages:
+        {props.book.pages}
+      </Info>
     </div>
     <Buttons>
       <Button title="Edit book" onClick={() => props.editBook(props.book.id)}>

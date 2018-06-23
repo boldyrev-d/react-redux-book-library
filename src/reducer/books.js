@@ -1,7 +1,9 @@
 import { Record, Map } from 'immutable';
 import { books as booksMock } from '../mock';
 import { arrayToMap } from '../store/helpers';
-import { DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK, CLEAR_EDIT } from '../constants';
+import {
+  DELETE_BOOK, ADD_BOOK, EDIT_BOOK, SAVE_BOOK, CLEAR_EDIT,
+} from '../constants';
 
 const BookModel = Record({
   id: null,
