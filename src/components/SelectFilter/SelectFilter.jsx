@@ -22,6 +22,7 @@ const SelectFilter = (props) => {
     value: book.id,
   }));
 
+  // eslint-disable-next-line max-len
   const handleChange = selectedItems => props.changeSelection(selectedItems.map(option => option.value));
 
   return (

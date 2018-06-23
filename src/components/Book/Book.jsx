@@ -84,33 +84,45 @@ const ButtonIcon = styled.div`
   width: 15px;
   height: 15px;
   margin: 0 auto;
-  background-image: url(${props => props.src});
+  background-image: url(${({ src }) => src});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 `;
 
-const Book = props => (
+const Book = ({
+  book: {
+    title,
+    year,
+    author,
+    pages,
+    id,
+    // eslint-disable-next-line no-shadow
+    editBook,
+    // eslint-disable-next-line no-shadow
+    deleteBook,
+  },
+}) => (
   <Wrapper>
     <Title>
-      {props.book.title}
+      {title}
     </Title>
     <div>
       <Info>
-Year:
-        {props.book.year}
+        Year:
+        {year}
       </Info>
       <Info>
-Author:
-        {props.book.author}
+        Author:
+        {author}
       </Info>
       <Info>
-Pages:
-        {props.book.pages}
+        Pages:
+        {pages}
       </Info>
     </div>
     <Buttons>
-      <Button title="Edit book" onClick={() => props.editBook(props.book.id)}>
+      <Button title="Edit book" onClick={() => editBook(id)}>
         <ButtonIcon src={pen} />
       </Button>
       <Button
@@ -118,7 +130,7 @@ Pages:
         onClick={() => {
           // eslint-disable-next-line no-restricted-globals, no-alert
           if (confirm('Вы уверены?')) {
-            props.deleteBook(props.book.id);
+            deleteBook(id);
           }
         }}
       >
@@ -128,4 +140,7 @@ Pages:
   </Wrapper>
 );
 
-export default connect(null, { deleteBook, editBook })(Book);
+export default connect(
+  null,
+  { deleteBook, editBook },
+)(Book);

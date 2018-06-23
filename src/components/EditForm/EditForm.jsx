@@ -90,21 +90,28 @@ class EditForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
 
-    const year = this.state.year.split('-')[0];
+    const { year: splitYear } = this.state;
+    // eslint-disable-next-line no-shadow
+    const { saveBook, addBook } = this.props;
+
+    const year = splitYear.split('-')[0];
     const { isEdit, editId } = this.props;
 
     if (isEdit) {
-      this.props.saveBook(editId, { id: editId, ...this.state, year });
+      saveBook(editId, { id: editId, ...this.state, year });
     } else {
-      this.props.addBook({ ...this.state, year });
+      addBook({ ...this.state, year });
     }
 
     this.setState({ ...this.baseState });
   };
 
   handleClear = () => {
+    // eslint-disable-next-line no-shadow
+    const { clearEdit } = this.props;
+
     this.setState({ ...this.baseState });
-    this.props.clearEdit();
+    clearEdit();
   };
 
   render() {
